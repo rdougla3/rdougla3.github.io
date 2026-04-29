@@ -16,8 +16,10 @@ permalink: /projects/
       <span class="project-panel-icon" aria-hidden="true">+</span>
     </button>
     <div class="project-panel-body">
-      <p>This project trains a generative adversarial network on MNIST, then exports the trained generator weights so the portfolio can reconstruct the model in the browser.</p>
-      <p><a href="{{ '/assets/models/gan-generator-weights.json' | relative_url }}">Generator weights</a> are loaded from the GAN.ipynb</p>
+      <p>This project trains a generative adversarial network on <a href="{{ 'https://en.wikipedia.org/wiki/MNIST_database'}}">MNIST</a>, 
+      then exports the trained generator weights so the portfolio can reconstruct the model in the browser.</p>
+      <p>The browser demo runs a fully connected generator that maps a 128-dimensional noise vector through linear layers with batch normalization and LeakyReLU activations before producing a 784-value (28x28) MNIST image. The model uses a final Tanh output and contains 2,449,680 <a href="{{ '/assets/models/gan-generator-weights.json' | relative_url }}">trainable parameters</a>.
+      </p>
 
       <div class="gan-demo" data-gan-demo data-weights-url="{{ '/assets/models/gan-generator-weights.json' | relative_url }}">
         <div class="gan-preview">
@@ -59,4 +61,5 @@ permalink: /projects/
   </article>
 </section>
 
+<script src="{{ '/assets/js/accordion.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/gan-demo.js' | relative_url }}"></script>

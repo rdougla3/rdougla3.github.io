@@ -1,0 +1,17 @@
+# Jekyll build/runtime output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Local Ruby/Bundler output
+.bundle/
+vendor/bundle/
+Gemfile.lock
+
+# Generated model exports
+assets/models/gan-generator-weights.json
+
+# Notebook/runtime scratch files
+.ipynb_checkpoints/
+__pycache__/

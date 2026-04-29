@@ -25,27 +25,37 @@
     });
   }
 
-  function addInternalNoise(values, scale) {
-    return values.map(function (value, index) {
-      return value + normalRandom() * scale[index];
+  function batchNorm(input, weight, bias, runningMean, runningVar) {
+    const epsilon = 1e-5;
+
+    return input.map(function (value, index) {
+      const normalized = (value - runningMean[index]) / Math.sqrt(runningVar[index] + epsilon);
+      return normalized * weight[index] + bias[index];
     });
   }
 
   function runGeneratorStages(weights) {
     const layers = weights.layers;
-    let x = layers.constant[0].slice();
+    let x = Array.from({ length: weights.latent_dim }, normalRandom);
     const stages = [];
 
-    x = addInternalNoise(linear(x, layers["layer1.weight"], layers["layer1.bias"]).map(leakyRelu), layers.noise_scale1);
-    stages.push({ label: "Layer 1", dimensions: "256", pixels: x.slice(), isFinal: false });
+    if (!layers["net.0.weight"]) {
+      throw new Error("Unsupported generator weights architecture.");
+    }
 
-    x = addInternalNoise(linear(x, layers["layer2.weight"], layers["layer2.bias"]).map(leakyRelu), layers.noise_scale2);
-    stages.push({ label: "Layer 2", dimensions: "512", pixels: x.slice(), isFinal: false });
+    x = linear(x, layers["net.0.weight"], layers["net.0.bias"]);
+    x = batchNorm(x, layers["net.1.weight"], layers["net.1.bias"], layers["net.1.running_mean"], layers["net.1.running_var"]).map(leakyRelu);
+    stages.push({ label: "Layer 1", dimensions: "512", pixels: x.slice(), isFinal: false });
 
-    x = addInternalNoise(linear(x, layers["layer3.weight"], layers["layer3.bias"]).map(leakyRelu), layers.noise_scale3);
+    x = linear(x, layers["net.3.weight"], layers["net.3.bias"]);
+    x = batchNorm(x, layers["net.4.weight"], layers["net.4.bias"], layers["net.4.running_mean"], layers["net.4.running_var"]).map(leakyRelu);
+    stages.push({ label: "Layer 2", dimensions: "1024", pixels: x.slice(), isFinal: false });
+
+    x = linear(x, layers["net.6.weight"], layers["net.6.bias"]);
+    x = batchNorm(x, layers["net.7.weight"], layers["net.7.bias"], layers["net.7.running_mean"], layers["net.7.running_var"]).map(leakyRelu);
     stages.push({ label: "Layer 3", dimensions: "1024", pixels: x.slice(), isFinal: false });
 
-    x = linear(x, layers["layer4.weight"], layers["layer4.bias"]).map(Math.tanh);
+    x = linear(x, layers["net.9.weight"], layers["net.9.bias"]).map(Math.tanh);
     stages.push({ label: "Final output", dimensions: "1 x 28 x 28", pixels: x.slice(), isFinal: true });
 
     return stages;
@@ -118,29 +128,6 @@
     });
   }
 
-  function setupAccordion() {
-    document.querySelectorAll("[data-accordion]").forEach(function (accordion) {
-      const panels = Array.from(accordion.querySelectorAll(".project-panel"));
-
-      panels.forEach(function (panel) {
-        const header = panel.querySelector(".project-panel-header");
-        const body = panel.querySelector(".project-panel-body");
-
-        header.addEventListener("click", function () {
-          panels.forEach(function (candidate) {
-            const candidateHeader = candidate.querySelector(".project-panel-header");
-            const candidateBody = candidate.querySelector(".project-panel-body");
-            const isTarget = candidate === panel;
-
-            candidate.classList.toggle("is-open", isTarget);
-            candidateHeader.setAttribute("aria-expanded", String(isTarget));
-            candidateBody.hidden = !isTarget;
-          });
-        });
-      });
-    });
-  }
-
   function setupGanDemo() {
     document.querySelectorAll("[data-gan-demo]").forEach(function (demo) {
       const canvas = demo.querySelector(".gan-canvas");
@@ -173,28 +160,33 @@
       button.addEventListener("click", function () {
         if (!weights || isAnimating) return;
 
-        const stages = runGeneratorStages(weights);
-        isAnimating = true;
-        button.disabled = true;
-        status.textContent = "Generating through network layers.";
+        try {
+          const stages = runGeneratorStages(weights);
+          isAnimating = true;
+          button.disabled = true;
+          status.textContent = "Generating through network layers.";
 
-        stages.reduce(function (chain, stage) {
-          return chain.then(function () {
-            drawMnist(canvas, stage.pixels, stage.isFinal);
-            caption.textContent = stage.label + " - dimensions: " + stage.dimensions;
-            return sleep(250);
+          stages.reduce(function (chain, stage) {
+            return chain.then(function () {
+              drawMnist(canvas, stage.pixels, stage.isFinal);
+              caption.textContent = stage.label + " - dimensions: " + stage.dimensions;
+              return sleep(250);
+            });
+          }, Promise.resolve()).then(function () {
+            isAnimating = false;
+            button.disabled = false;
+            status.textContent = "Generated a fake MNIST image.";
           });
-        }, Promise.resolve()).then(function () {
+        } catch (error) {
           isAnimating = false;
           button.disabled = false;
-          status.textContent = "Generated a fake MNIST image.";
-        });
+          status.textContent = "The loaded weights do not match this demo version.";
+        }
       });
     });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    setupAccordion();
     setupGanDemo();
   });
 })();
