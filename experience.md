@@ -11,8 +11,8 @@ permalink: /experience/
 <p class="meta">May 2023 - Present</p>
 
 - Engineer internal DevSecOps products that improve consistency, security, and scale across enterprise platforms for Systemically Important Financial Market Utilities.
-- Support Tier 0 readiness for an internal DevOps platform, including hot-hot availability and disaster recovery rotation in under 15 minutes.
 - Build platform capabilities that help teams standardize delivery, improve operational confidence, and reduce manual work in secure software pipelines.
+- Transformed internal DevOps platform into a Tier 0 mission-critical service with strict uptime, resiliency, and disaster recovery requirements.
 
 ## Senior Java Developer, DTCC
 
