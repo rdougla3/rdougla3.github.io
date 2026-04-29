@@ -1,0 +1,157 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+:root {
+  --bg: #0d1117;
+  --panel: #161b22;
+  --panel-border: #30363d;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --accent: #58a6ff;
+  --accent-strong: #79c0ff;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover,
+a:focus {
+  color: var(--accent-strong);
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--panel-border);
+  background: rgba(13, 17, 23, 0.94);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 72px;
+}
+
+.site-title {
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.site-nav a {
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  color: var(--text);
+}
+
+.page-content {
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+.hero {
+  padding: 48px 0 32px;
+}
+
+.hero h1 {
+  margin-bottom: 16px;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.05;
+}
+
+.lead {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.button:hover,
+.button:focus {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.card {
+  min-height: 160px;
+  padding: 22px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.card h2,
+.card h3 {
+  margin-top: 0;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .site-header .container {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .page-content {
+    padding-top: 28px;
+  }
+}

@@ -1,0 +1,16 @@
+title: Ross Douglas
+description: Portfolio site for projects, experience, and background.
+theme: jekyll-theme-midnight
+
+plugins:
+  - jekyll-seo-tag
+
+navigation:
+  - title: Home
+    url: /
+  - title: About
+    url: /about/
+  - title: Projects
+    url: /projects/
+  - title: Experience
+    url: /experience/
