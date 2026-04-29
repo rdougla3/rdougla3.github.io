@@ -17,7 +17,7 @@ permalink: /projects/
     </button>
     <div class="project-panel-body">
       <p>This project trains a generative adversarial network on MNIST, then exports the trained generator weights so the portfolio can reconstruct the model in the browser.</p>
-      <p><a href="{{ '/assets/models/gan-generator-weights.json' | relative_url }}">Generator weights</a> are loaded from the notebook export. Run the export cell in <code>project5/GAN.ipynb</code> after training to create that file.</p>
+      <p><a href="{{ '/assets/models/gan-generator-weights.json' | relative_url }}">Generator weights</a> are loaded from the GAN.ipynb</p>
 
       <div class="gan-demo" data-gan-demo data-weights-url="{{ '/assets/models/gan-generator-weights.json' | relative_url }}">
         <div class="gan-preview">
