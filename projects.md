@@ -38,7 +38,7 @@ permalink: /projects/
     <button class="project-panel-header" type="button" aria-expanded="false">
       <span>
         <strong>Project Two</strong>
-        <span class="meta">Add stack here</span>
+        <span class="meta">Coming soon 😎</span>
       </span>
       <span class="project-panel-icon" aria-hidden="true">+</span>
     </button>
@@ -51,7 +51,7 @@ permalink: /projects/
     <button class="project-panel-header" type="button" aria-expanded="false">
       <span>
         <strong>Project Three</strong>
-        <span class="meta">Add stack here</span>
+        <span class="meta">Coming soon 😎</span>
       </span>
       <span class="project-panel-icon" aria-hidden="true">+</span>
     </button>
