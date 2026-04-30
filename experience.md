@@ -12,7 +12,7 @@ permalink: /experience/
 
 - Engineer internal DevSecOps products that improve consistency, security, and scale across enterprise platforms for Systemically Important Financial Market Utilities.
 - Build platform capabilities that help teams standardize delivery, improve operational confidence, and reduce manual work in secure software pipelines.
-- Transformed internal DevOps platform into a Tier 0 mission-critical service with strict uptime, resiliency, and disaster recovery requirements.
+- Transformed internal DevOps platform into a Tier 0 mission-critical service with assessed uptime, resiliency, and disaster recovery requirements.
 
 ## Senior Java Developer, DTCC
 
