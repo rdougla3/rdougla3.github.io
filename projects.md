@@ -37,13 +37,67 @@ permalink: /projects/
   <article class="project-panel">
     <button class="project-panel-header" type="button" aria-expanded="false">
       <span>
-        <strong>Project Two</strong>
-        <span class="meta">Coming soon 😎</span>
+        <strong>Mutation-Based Binary Fuzzer</strong>
+        <span class="meta">Python, JavaScript, systems testing, crash reproduction</span>
       </span>
       <span class="project-panel-icon" aria-hidden="true">+</span>
     </button>
     <div class="project-panel-body" hidden>
-      <p>Add a short project summary here.</p>
+      <p>This project mutates binary inputs for compiled test programs until a segmentation fault is found. The original command-line fuzzer uses a deterministic PRNG seed, extends the payload every 500 iterations, mutates each byte with a 13% probability, and writes both the crashing input and the seed/iteration pair needed to reproduce it.</p>
+      <p>The browser version below ports the core mutation loop to JavaScript and runs against lightweight target predicates, while the comparison table shows the native crash artifacts produced by the original fuzzer.</p>
+
+      <div class="fuzzer-demo" data-fuzzer-demo>
+        <div class="fuzzer-toolbar">
+          <label>
+            Target
+            <select data-fuzzer-target></select>
+          </label>
+          <label>
+            Seed
+            <input type="number" min="1" step="1" value="1337" data-fuzzer-seed>
+          </label>
+          <label>
+            Iterations
+            <input type="number" min="100" max="20000" step="100" value="5000" data-fuzzer-iterations>
+          </label>
+          <button class="button" type="button" data-run-fuzzer>Run Fuzzer</button>
+        </div>
+
+        <div class="fuzzer-layout">
+          <div class="fuzzer-output">
+            <div class="fuzzer-stats" aria-label="Fuzzer run statistics">
+              <span>
+                <strong data-fuzzer-status>Ready</strong>
+                <small>Status</small>
+              </span>
+            </div>
+            <div class="fuzzer-progress" aria-hidden="true">
+              <span data-fuzzer-progress></span>
+            </div>
+            <div class="byte-grid" data-byte-grid aria-label="Current payload bytes"></div>
+            <pre class="hex-dump" data-hex-dump>00</pre>
+          </div>
+
+          <div class="fuzzer-results">
+            <div class="fuzzer-side-stats" aria-label="Current fuzzer metrics">
+              <span>
+                <strong data-fuzzer-step>0</strong>
+                <small>Iteration</small>
+              </span>
+              <span>
+                <strong data-fuzzer-size>1 byte</strong>
+                <small>Payload</small>
+              </span>
+              <span>
+                <strong data-fuzzer-mutations>0</strong>
+                <small>Mutations</small>
+              </span>
+            </div>
+            <h3>Native Crash Finds</h3>
+            <div class="fuzzer-levels" data-fuzzer-levels></div>
+          </div>
+        </div>
+      </div>
     </div>
   </article>
 
@@ -63,3 +117,4 @@ permalink: /projects/
 
 <script src="{{ '/assets/js/accordion.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/gan-demo.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/fuzzer-demo.js' | relative_url }}"></script>

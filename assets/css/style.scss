@@ -220,8 +220,241 @@ a:focus {
   justify-items: start;
 }
 
+.fuzzer-demo {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.fuzzer-toolbar {
+  display: grid;
+  grid-template-columns: minmax(160px, 1.2fr) minmax(96px, 0.7fr) minmax(118px, 0.7fr) auto;
+  align-items: end;
+  gap: 12px;
+}
+
+.fuzzer-toolbar label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.fuzzer-toolbar select,
+.fuzzer-toolbar input {
+  min-height: 44px;
+  width: 100%;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  background: #0d1117;
+  color: var(--text);
+  font: inherit;
+}
+
+.fuzzer-toolbar select {
+  padding: 0 12px;
+}
+
+.fuzzer-toolbar input {
+  padding: 0 10px;
+}
+
+.fuzzer-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 18px;
+  align-items: start;
+}
+
+.fuzzer-output {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.fuzzer-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fuzzer-stats span {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 4px;
+  min-width: 0;
+  padding: 14px 16px;
+  background: #0d1117;
+}
+
+.fuzzer-stats strong {
+  overflow: visible;
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.fuzzer-stats small,
+.fuzzer-side-stats small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.fuzzer-progress {
+  height: 8px;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  background: #0d1117;
+  overflow: hidden;
+}
+
+.fuzzer-progress span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: #3fb950;
+  transition: width 120ms ease;
+}
+
+.byte-grid {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 4px;
+  min-height: 152px;
+  padding: 10px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: #05070a;
+}
+
+.byte-grid span {
+  aspect-ratio: 1;
+  min-width: 0;
+  border: 1px solid rgba(230, 237, 243, 0.1);
+  border-radius: 3px;
+  background: #58a6ff;
+}
+
+.hex-dump {
+  min-height: 132px;
+  max-height: 220px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: #0d1117;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  overflow: auto;
+}
+
+.fuzzer-results {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.fuzzer-results h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.fuzzer-side-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.fuzzer-side-stats span {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  min-height: 54px;
+  padding: 9px 8px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: #0d1117;
+}
+
+.fuzzer-side-stats strong {
+  overflow: hidden;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fuzzer-levels {
+  display: grid;
+  gap: 8px;
+}
+
+.fuzzer-level {
+  display: grid;
+  grid-template-columns: 62px minmax(64px, 1fr) 62px;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  background: #0d1117;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.fuzzer-level:hover,
+.fuzzer-level:focus,
+.fuzzer-level.is-active {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.fuzzer-level-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #21262d;
+  overflow: hidden;
+}
+
+.fuzzer-level-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #58a6ff;
+}
+
 @media (max-width: 560px) {
   .gan-demo {
+    grid-template-columns: 1fr;
+  }
+
+  .fuzzer-toolbar,
+  .fuzzer-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .byte-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 561px) and (max-width: 820px) {
+  .fuzzer-toolbar,
+  .fuzzer-layout {
     grid-template-columns: 1fr;
   }
 }
