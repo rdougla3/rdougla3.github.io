@@ -110,7 +110,7 @@ permalink: /projects/
       <span class="project-panel-icon" aria-hidden="true">+</span>
     </button>
     <div class="project-panel-body" hidden>
-      <p>Add a short project summary here.</p>
+      <p>Placeholder summary.</p>
     </div>
   </article>
 </section>
