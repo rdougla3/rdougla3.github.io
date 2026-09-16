@@ -1,0 +1,66 @@
+# Edit this file to update both the web resume and its PDF export.
+name: Ross Douglas
+headline: Software Engineer
+location: Dallas, Texas
+website:
+  label: portfolio.observalabs.link
+  url: https://portfolio.observalabs.link
+# Optional contact details; blank values are omitted.
+email: rossdouglas829@gmail.com
+phone: "(480) 322-7082"
+summary: >-
+  Full-stack software engineer building enterprise DevSecOps platform tools for
+  Systemically Important Financial Market Utilities.
+
+experience:
+  - title: DevSecOps Engineer (Platform Engineering)
+    organization: DTCC
+    dates: May 2023 – Present
+    highlights:
+      - Engineer an internal developer platform providing full-service infrastructure and DevSecOps automation for hundreds of applications.
+      - Build reusable, configurable platform capabilities that DevSecOps and domain engineers compose into self-service workflows, enabling application teams to provision infrastructure, upgrade middleware, and manage pipeline and security settings without handling the underlying automation.
+      - Develop infrastructure-as-code systems that turn instantiated templates into persistent, lifecycle-managed entities, allowing application developers to manage resources through simple self-service controls.
+      - Transformed an internal DevOps platform into a Tier 0 mission-critical service with assessed uptime, resiliency, and disaster recovery requirements.
+  - title: Senior Java Developer
+    organization: DTCC
+    dates: August 2020 – May 2023
+    highlights:
+      - Composed platform capabilities into customized DevSecOps use cases, translating application requirements into reusable provisioning, configuration, and delivery templates.
+      - Developed Kotlin-based services and automation for application teams using the internal delivery platform.
+      - Supported metrics, validation, and automated testing to improve reliability and maintainability of delivery workflows.
+
+additional_experience:
+  - title: Capstone Contributor
+    organization: My Recovery Day
+    dates: August 2021 – May 2022
+    description: Added full-stack web portal features for a nonprofit helping people in addiction recovery earn income through e-commerce.
+  - title: Software Development Intern
+    organization: Tyler Technologies
+    dates: May 2019 – December 2019
+    description: Delivered full-stack K-12 ERP features across web interfaces, APIs, and databases.
+  - title: Programming Subsystem Lead
+    organization: CanSat
+    dates: 2018–2019
+    description: Led software development for a college CanSat project.
+  - title: Opinions Columnist
+    organization: The State Press
+    dates: January – May 2018
+    description: ""
+
+skills:
+  - label: Development
+    items: Java, Spring, JavaScript, Angular, Python, web interfaces, APIs, database-backed applications
+  - label: Platforms
+    items: Infrastructure as code, developer platforms, DevSecOps, CI/CD, reliability engineering, distributed systems
+
+education:
+  - degree: M.C.S. Cybersecurity
+    institution: Arizona State University
+    date: Expected December 2027
+  - degree: B.S. Computer Science
+    institution: Arizona State University
+    date: December 2023
+
+leadership:
+  - 3D Fabrication Vice Chair at the Dallas Makerspace
+  - Drone/RC SIG lead at the Dallas Makerspace

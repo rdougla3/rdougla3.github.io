@@ -1,0 +1,66 @@
+# Optional photo metadata. The carousel shuffles all photos on each page load.
+- src: "/photos/IMG_20260521_212916777_HDR.jpg"
+  preview: "/assets/images/album/IMG_20260521_212916777_HDR.webp"
+  alt: "Dinosaur-shaped cutouts on a sheet inside a laser cutter"
+  width: 1200
+  height: 1600
+- src: "/photos/20250704_182147.jpg"
+  preview: "/assets/images/album/20250704_182147.webp"
+  alt: "A robot miniature on a paint-covered workbench"
+  width: 1600
+  height: 1600
+- src: "/photos/DSC01973.JPG"
+  preview: "/assets/images/album/DSC01973.webp"
+  alt: "A tall sandstone spire against a clear blue sky"
+  width: 1600
+  height: 1067
+- src: "/photos/20251223_201138.jpg"
+  preview: "/assets/images/album/20251223_201138.webp"
+  alt: "A winged dragon model on a display base"
+  width: 1600
+  height: 1600
+- src: "/photos/Snapchat-1121890000.jpg"
+  preview: "/assets/images/album/Snapchat-1121890000.webp"
+  alt: "A painted fantasy miniature held in front of painting supplies"
+  width: 900
+  height: 1600
+- src: "/photos/20241221_135738.jpg"
+  preview: "/assets/images/album/20241221_135738.webp"
+  alt: "A colorful painted creature miniature held above the workbench"
+  width: 1200
+  height: 1600
+- src: "/photos/20250926_181347~2.jpg"
+  preview: "/assets/images/album/20250926_181347~2.webp"
+  alt: "A painted pirate bust with a tentacled beard"
+  width: 1600
+  height: 1600
+- src: "/photos/Snapchat-235360350.jpg"
+  preview: "/assets/images/album/Snapchat-235360350.webp"
+  alt: "A painted stone doorway terrain piece with colored details"
+  width: 900
+  height: 1600
+- src: "/photos/DSC02025.JPG"
+  preview: "/assets/images/album/DSC02025.webp"
+  alt: "A climber ascending a steep rock face"
+  width: 1600
+  height: 1067
+- src: "/photos/Snapchat-702408712.jpg"
+  preview: "/assets/images/album/Snapchat-702408712.webp"
+  alt: "A stack of colorful fabricated parts on a workbench"
+  width: 900
+  height: 1600
+- src: "/photos/Snapchat-1257168682.jpg"
+  preview: "/assets/images/album/Snapchat-1257168682.webp"
+  alt: "Several fantasy miniatures arranged on a painting workbench"
+  width: 900
+  height: 1600
+- src: "/photos/20260106_173604.jpg"
+  preview: "/assets/images/album/20260106_173604.webp"
+  alt: "An FPV drone frame with exposed electronics and wiring"
+  width: 1600
+  height: 1600
+- src: "/photos/20180311_135335.jpg"
+  preview: "/assets/images/album/20180311_135335.webp"
+  alt: "Climbing ropes running up a sunlit rock face"
+  width: 1200
+  height: 1600

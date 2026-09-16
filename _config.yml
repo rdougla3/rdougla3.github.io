@@ -4,6 +4,7 @@ theme: jekyll-theme-midnight
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-redirect-from
 
 navigation:
   - title: Home

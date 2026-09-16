@@ -1,0 +1,65 @@
+{% comment %}
+Collect listed photos and discover unlisted images. JavaScript shuffles the full
+album on each page load; this order is the fallback when JavaScript is disabled.
+{% endcomment %}
+{% assign album_files = '' | split: ',' %}
+{% assign listed_paths = '' | split: ',' %}
+{% for photo in site.data.photos %}
+  {% assign listed_paths = listed_paths | push: photo.src | push: photo.preview %}
+  {% assign photo_file = nil %}
+  {% if photo.src %}
+    {% assign photo_file = site.static_files | where: 'path', photo.src | first %}
+  {% endif %}
+  {% if photo.preview %}
+    {% assign preview = site.static_files | where: 'path', photo.preview | first %}
+    {% assign photo_file = preview | default: photo_file %}
+  {% endif %}
+  {% if photo_file %}{% assign album_files = album_files | push: photo_file %}{% endif %}
+{% endfor %}
+{% assign image_extensions = '.jpg,.jpeg,.png,.webp,.gif,.avif' | split: ',' %}
+{% assign sorted_files = site.static_files | sort: 'path' %}
+{% for file in sorted_files %}
+  {% assign folder = file.path | remove: file.name %}
+  {% assign extension = file.extname | downcase %}
+  {% if folder == '/photos/' or folder == '/assets/images/album/' %}
+    {% if image_extensions contains extension %}
+      {% unless listed_paths contains file.path %}
+        {% assign album_files = album_files | push: file %}
+      {% endunless %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if album_files.size > 0 %}
+<section class="photo-album" data-photo-album aria-labelledby="photo-album-title" aria-roledescription="carousel">
+  <div class="photo-album-heading">
+    <h2 id="photo-album-title">Outside of work</h2>
+    <p>Miniatures, climbing, makerspace projects. Select a photo to view the original.</p>
+  </div>
+  <div class="photo-album-track" data-photo-track tabindex="0" role="group" aria-label="Photos. Use the left and right arrow keys to browse.">
+    {% for file in album_files %}
+      {% assign by_source = site.data.photos | where: 'src', file.path | first %}
+      {% assign by_preview = site.data.photos | where: 'preview', file.path | first %}
+      {% assign photo = by_preview | default: by_source %}
+      {% assign original_path = file.path %}
+      {% if photo.src %}
+        {% assign original = site.static_files | where: 'path', photo.src | first %}
+        {% assign original_path = original.path | default: file.path %}
+      {% endif %}
+      {% assign fallback_alt = file.basename | replace: '-', ' ' | replace: '_', ' ' | prepend: 'Photo: ' %}
+      {% assign alt = photo.alt | default: fallback_alt %}
+      <figure class="photo-album-slide" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ forloop.length }}">
+        <a href="{{ original_path | relative_url }}" target="_blank" rel="noopener" aria-label="{{ alt | escape }} (opens original in a new tab)">
+          <img src="{{ file.path | relative_url }}" alt="{{ alt | escape }}"{% if file.path == photo.preview and photo.width and photo.height %} width="{{ photo.width }}" height="{{ photo.height }}"{% endif %} loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" decoding="async">
+        </a>
+      </figure>
+    {% endfor %}
+  </div>
+  <div class="photo-album-controls" data-photo-controls hidden>
+    <button class="button" type="button" data-photo-previous aria-label="Previous photo"><span aria-hidden="true">←</span> Previous</button>
+    <p class="photo-album-position" data-photo-position aria-live="polite" aria-atomic="true">1 / {{ album_files.size }}</p>
+    <button class="button" type="button" data-photo-next aria-label="Next photo">Next <span aria-hidden="true">→</span></button>
+  </div>
+</section>
+<script src="{{ '/assets/js/photo-album.js' | relative_url }}" defer></script>
+{% endif %}

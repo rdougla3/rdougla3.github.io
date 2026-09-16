@@ -1,0 +1,77 @@
+---
+layout: default
+title: Experience
+permalink: /experience/
+redirect_from: /resume/
+resume: true
+---
+{% assign resume = site.data.resume %}
+<div class="resume-toolbar">
+  <div>
+    <h1>Experience</h1>
+    <p>US Letter · 8.5 × 11 inches</p>
+  </div>
+  <button class="button" type="button" data-print-resume hidden>Save as PDF</button>
+</div>
+<p class="resume-print-help">To export, turn off headers and footers in the print dialog.</p>
+<noscript><p class="resume-print-help">Use your browser’s Print command to save this resume as a PDF.</p></noscript>
+
+<article class="resume-sheet" aria-label="{{ resume.name | escape }} resume">
+  <header class="resume-heading">
+    <div class="resume-heading-details">
+      <div class="resume-identity">
+        <h2>{{ resume.name | escape }}</h2>
+        <p class="resume-headline">{{ resume.headline | escape }}</p>
+        {% if resume.location and resume.location != '' %}<p class="resume-location">{{ resume.location | escape }}</p>{% endif %}
+      </div>
+      <ul class="resume-contact" aria-label="Contact details">
+        {% if resume.email and resume.email != '' %}<li><a href="mailto:{{ resume.email | escape }}">{{ resume.email | escape }}</a></li>{% endif %}
+        {% if resume.phone and resume.phone != '' %}<li><a href="tel:{{ resume.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | escape }}">{{ resume.phone | escape }}</a></li>{% endif %}
+        <li><a href="{{ resume.website.url | escape }}">{{ resume.website.label | escape }}</a></li>
+      </ul>
+    </div>
+    <p class="resume-summary">{{ resume.summary | escape }}</p>
+  </header>
+
+  <section class="resume-section" aria-labelledby="resume-experience">
+    <h3 id="resume-experience">Experience</h3>
+    {% for role in resume.experience %}
+      <div class="resume-entry">
+        <div class="resume-entry-heading">
+          <h4>{{ role.title | escape }} <span>· {{ role.organization | escape }}</span></h4>
+          <p class="resume-date">{{ role.dates | escape }}</p>
+        </div>
+        <ul>{% for highlight in role.highlights %}<li>{{ highlight | escape }}</li>{% endfor %}</ul>
+      </div>
+    {% endfor %}
+  </section>
+
+  <section class="resume-section" aria-labelledby="resume-additional-experience">
+    <h3 id="resume-additional-experience">Additional Experience</h3>
+    {% for role in resume.additional_experience %}
+      <p class="resume-entry"><strong>{{ role.title | escape }} · {{ role.organization | escape }}</strong>{% if role.dates and role.dates != '' %} ({{ role.dates | escape }}){% endif %}{% if role.description and role.description != '' %}. {{ role.description | escape }}{% endif %}</p>
+    {% endfor %}
+  </section>
+
+  <section class="resume-section" aria-labelledby="resume-skills">
+    <h3 id="resume-skills">Technical Skills</h3>
+    {% for skill in resume.skills %}
+      <p><strong>{{ skill.label | escape }}:</strong> {{ skill.items | escape }}</p>
+    {% endfor %}
+  </section>
+
+  <section class="resume-section" aria-labelledby="resume-education">
+    <h3 id="resume-education">Education</h3>
+    {% for education in resume.education %}
+      <div class="resume-entry resume-entry-heading">
+        <h4>{{ education.degree | escape }} <span>· {{ education.institution | escape }}</span></h4>
+        <p class="resume-date">{{ education.date | escape }}</p>
+      </div>
+    {% endfor %}
+  </section>
+
+  <section class="resume-section" aria-labelledby="resume-leadership">
+    <h3 id="resume-leadership">Leadership</h3>
+    <ul>{% for item in resume.leadership %}<li>{{ item | escape }}</li>{% endfor %}</ul>
+  </section>
+</article>

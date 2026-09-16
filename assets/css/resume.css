@@ -1,0 +1,274 @@
+/* The screen sheet and printed page share a 7.3in content width. */
+.resume-page .page-content {
+  max-width: 8.5in;
+}
+
+.resume-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.resume-toolbar h1 {
+  margin: 0 0 8px;
+}
+
+.resume-toolbar p,
+.resume-print-help {
+  color: var(--muted);
+}
+
+.resume-toolbar p {
+  margin: 0;
+}
+
+.resume-print-help {
+  margin: 16px 0 24px;
+  font-size: 0.9rem;
+}
+
+.resume-toolbar [hidden] {
+  display: none;
+}
+
+.resume-sheet {
+  box-sizing: border-box;
+  width: 8.5in;
+  min-height: 11in;
+  padding: 0.55in 0.6in;
+  background: #fff;
+  color: #202830;
+  box-shadow: 0 8px 32px #0005;
+  font: 10pt / 1.3 Arial, Helvetica, sans-serif;
+  overflow-wrap: break-word;
+}
+
+.resume-sheet h2,
+.resume-sheet h3,
+.resume-sheet h4,
+.resume-sheet p,
+.resume-sheet ul {
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+  text-shadow: none;
+}
+
+.resume-heading-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18pt;
+}
+
+.resume-sheet h2 {
+  font-size: 28pt;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.5pt;
+}
+
+/* The theme marks these font families important; keep PDF fonts consistent. */
+.resume-sheet h3,
+.resume-sheet strong {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 700;
+}
+
+.resume-sheet .resume-headline {
+  margin-top: 6pt;
+  font-size: 11pt;
+  letter-spacing: 1pt;
+  text-transform: uppercase;
+}
+
+.resume-sheet .resume-location {
+  margin-top: 5pt;
+  color: #4b5560;
+  font-size: 9pt;
+}
+
+.resume-sheet .resume-contact {
+  display: grid;
+  gap: 5pt;
+  padding: 0;
+  list-style: none;
+  font-size: 9.5pt;
+  text-align: right;
+}
+
+.resume-sheet a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.resume-sheet .resume-summary {
+  margin-top: 14pt;
+  padding-top: 10pt;
+  border-top: 1.5pt solid #202830;
+  font-size: 10.5pt;
+  line-height: 1.4;
+}
+
+.resume-contact a {
+  color: #1d4e7a;
+  text-decoration: underline;
+}
+
+.resume-contact a:hover,
+.resume-contact a:focus-visible {
+  color: #102b45;
+  text-decoration-thickness: 2px;
+}
+
+/* Reset the Midnight theme's generic section sizing. */
+.resume-sheet .resume-section {
+  position: static;
+  width: auto;
+  max-width: none;
+  margin: 9pt 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.resume-sheet h3 {
+  margin-bottom: 4pt;
+  padding-bottom: 3pt;
+  border-bottom: 1px solid #86929d;
+  font-size: 10pt;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 1pt;
+  text-transform: uppercase;
+  break-after: avoid;
+}
+
+.resume-entry + .resume-entry {
+  margin-top: 4pt;
+}
+
+.resume-entry-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10pt;
+  break-after: avoid;
+}
+
+.resume-sheet h4 {
+  font-size: 10pt;
+  line-height: inherit;
+  font-weight: 700;
+}
+
+.resume-sheet h4 span {
+  font-weight: 400;
+}
+
+.resume-sheet .resume-date {
+  flex-shrink: 0;
+  font-size: 9pt;
+}
+
+.resume-sheet ul {
+  padding-left: 14pt;
+  list-style: disc;
+}
+
+.resume-entry ul {
+  margin-top: 3pt;
+}
+
+.resume-sheet li + li,
+.resume-section > p + p {
+  margin-top: 3pt;
+}
+
+.resume-sheet .resume-contact li {
+  margin: 0;
+}
+
+.resume-sheet li,
+.resume-sheet p {
+  orphans: 2;
+  widows: 2;
+}
+
+.resume-entry {
+  break-inside: avoid;
+}
+
+/* Reflow for reading on phones; print always uses document dimensions. */
+@media screen and (max-width: 863px) {
+  .resume-sheet {
+    width: 100%;
+    min-height: 0;
+    padding: 28px 24px;
+  }
+
+  .resume-entry-heading {
+    flex-wrap: wrap;
+    gap: 2pt 10pt;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .resume-heading-details {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12pt;
+  }
+
+  .resume-sheet .resume-contact {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .resume-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .resume-page .page-content {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+@page {
+  size: Letter;
+  margin: 0.55in 0.6in;
+}
+
+@media print {
+  html,
+  body.resume-page {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .resume-page .site-header,
+  .resume-toolbar,
+  .resume-print-help,
+  .resume-page noscript {
+    display: none !important;
+  }
+
+  .resume-page .page-content {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-sheet {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
