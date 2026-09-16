@@ -5,7 +5,7 @@ title: Home
 
 <section class="hero">
   <h1>Ross Douglas</h1>
-  <p class="lead">Computer science portfolio featuring selected projects, technical experience, and a little context about how I work.</p>
+  <p class="lead">Computer science portfolio featuring selected projects, technical experience, and a little context about myself.</p>
 </section>
 
 <section class="grid" aria-label="Portfolio sections">
