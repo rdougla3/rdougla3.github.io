@@ -508,6 +508,174 @@ a:focus {
   font-size: 0.95rem;
 }
 
+.steg-demo {
+  margin-top: 24px;
+}
+
+.steg-demo [hidden] {
+  display: none !important;
+}
+
+.steg-upload {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border: 1px dashed var(--panel-border);
+  border-radius: 8px;
+}
+
+.steg-upload input {
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  color: var(--text);
+}
+
+.steg-upload span,
+.steg-note,
+.steg-message-size {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.steg-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 22px;
+  margin-top: 22px;
+  align-items: start;
+}
+
+.steg-image {
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  padding: 12px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: #05070a;
+}
+
+.steg-image p {
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.steg-image canvas {
+  display: block;
+  max-width: 100%;
+  max-height: 340px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.steg-stats {
+  margin: 12px 0 0;
+}
+
+.steg-stats > div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.steg-stats dt {
+  color: var(--muted);
+}
+
+.steg-stats dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.steg-actions {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.steg-actions fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+}
+
+.steg-actions legend {
+  padding: 0 6px;
+  font-size: 1rem;
+}
+
+.steg-actions label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.steg-actions textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+.steg-demo :is(input, textarea, button, a, summary):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.steg-message-size {
+  margin: 8px 0 14px;
+}
+
+.steg-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.steg-reveal-result {
+  margin-top: 16px;
+}
+
+.steg-status {
+  margin: 20px 0 10px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg);
+}
+
+.steg-demo .is-error {
+  color: #ffb4ab;
+}
+
+.steg-format summary {
+  color: var(--accent);
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.steg-format p {
+  margin: 8px 0;
+}
+
+@media (max-width: 720px) {
+  .steg-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .photo-album {
   max-width: none;
   margin: 32px 0;

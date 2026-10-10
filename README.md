@@ -56,3 +56,40 @@ The desktop view uses the same content width and typography as the PDF. On small
 screens, it reflows for reading without changing the print layout. Content is not
 clipped to a fixed height: longer resumes flow onto additional printed pages with
 repeated margins. Check print preview after edits to confirm the page count.
+
+## Image steganography demo
+
+The third Projects entry extends the original C# bitmap experiment with browser-only
+encoding and decoding. Upload an image, enter text, select **Embed message**, and
+download the generated PNG. Upload
+that PNG and select **Reveal message** to recover the text without the source image.
+The original XOR-based C# output has no framing and is not compatible with this decoder.
+
+Version 1 stores this byte sequence, most-significant bit pairs first, in the two
+least-significant bits of each R, G, then B channel, scanning left-to-right/top-to-bottom:
+
+| Field | Size |
+| --- | --- |
+| Start marker / version: ASCII `RDSTEG01` | 8 bytes |
+| UTF-8 message byte length, unsigned big-endian | 4 bytes |
+| CRC-32/ISO-HDLC of message bytes, unsigned big-endian | 4 bytes |
+| UTF-8 message | Variable |
+| End marker: ASCII `ENDSTEG!` | 8 bytes |
+
+Only fully opaque pixels participate: canvas premultiplication can alter the RGB
+values of transparent pixels during PNG conversion. The alpha channel is unchanged.
+Capacity is `floor(opaquePixels * 6 / 8) - 24` message bytes; a complete frame needs at
+least 32 opaque pixels. Storage uses `ceil((messageBytes + 24) * 8 / 6)` opaque pixels,
+including framing. These are pixels allocated to storage, not necessarily pixels whose
+values changed. The decoder checks the version, length bound, end marker, checksum,
+and UTF-8 validity before returning text. The format hides text but does not encrypt it
+or provide tamper-proof authentication. PNG export is required for reliable recovery;
+lossy conversion, resizing, and color edits can corrupt the payload.
+
+The UI accepts PNG, JPEG, WebP, and BMP inputs up to 20 MiB / 16 million pixels and
+never resizes them. All processing stays in the browser. Newly embedded data replaces
+any frame at the start of the usable pixels; this is not a secure erase of older data.
+
+Run codec tests with `node --test tests/steganography.test.cjs`. Build the site with
+`bundle exec jekyll build` and check a PNG download/upload round trip in the browser
+when changing the image pipeline.

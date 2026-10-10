@@ -104,13 +104,68 @@ permalink: /projects/
   <article class="project-panel">
     <button class="project-panel-header" type="button" aria-expanded="false">
       <span>
-        <strong>Project Three</strong>
-        <span class="meta">Coming soon 😎</span>
+        <strong>Image Steganography</strong>
+        <span class="meta">C#, JavaScript, image processing, binary encoding</span>
       </span>
       <span class="project-panel-icon" aria-hidden="true">+</span>
     </button>
     <div class="project-panel-body" hidden>
-      <p>Placeholder summary.</p>
+      <p>This browser demo hides and recovers text messages in uploaded images by storing data in the two least-significant bits of each red, green, and blue channel of fully opaque pixels. Start and end markers, a message length, and a checksum identify the hidden payload, determine how many pixels it occupies, and detect damaged messages.</p>
+      <p>Embed a message and download the resulting PNG, or upload a marked image to reveal its message and see how many pixels store it. Images are processed locally in your browser.</p>
+
+      <div class="steg-demo" data-steg-demo>
+        <label class="steg-upload" for="steg-upload">
+          <strong>Choose an image</strong>
+          <input id="steg-upload" data-steg-upload type="file" accept="image/png,image/jpeg,image/webp,image/bmp,.bmp" aria-describedby="steg-upload-help">
+          <span id="steg-upload-help">PNG, JPEG, WebP, or BMP · up to 20 MB and 16 million pixels</span>
+        </label>
+
+        <div class="steg-layout">
+          <div class="steg-preview">
+            <div class="steg-image">
+              <p data-steg-placeholder>Your image will appear here.</p>
+              <canvas data-steg-canvas hidden aria-label="Image preview, showing the embedded result after encoding"></canvas>
+            </div>
+            <dl class="steg-stats">
+              <div><dt>Image dimensions</dt><dd data-steg-dimensions>—</dd></div>
+              <div><dt>Message capacity</dt><dd data-steg-capacity>—</dd></div>
+              <div><dt>Pixels storing data</dt><dd data-steg-used>—</dd></div>
+            </dl>
+          </div>
+
+          <div class="steg-actions">
+            <fieldset>
+              <legend>Hide a message</legend>
+              <label for="steg-message">Message to embed</label>
+              <textarea id="steg-message" data-steg-message rows="4" placeholder="Write something to hide in the image…" aria-describedby="steg-message-size"></textarea>
+              <p id="steg-message-size" class="steg-message-size" data-steg-message-size>Choose an image to see capacity.</p>
+              <div class="steg-buttons">
+                <button class="button" type="button" data-steg-embed disabled>Embed message</button>
+                <a class="button" data-steg-download hidden download>Download PNG</a>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Reveal a message</legend>
+              <p>Read a message written by this demo, using only the marked image.</p>
+              <button class="button" type="button" data-steg-reveal disabled>Reveal message</button>
+              <div class="steg-reveal-result" data-steg-reveal-result hidden>
+                <label for="steg-revealed">Revealed message</label>
+                <textarea id="steg-revealed" data-steg-revealed rows="4" readonly spellcheck="false"></textarea>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <p class="steg-status" data-steg-status role="status" aria-live="polite" aria-atomic="true">Choose an image to get started.</p>
+        <p class="steg-note">Keep the downloaded PNG unchanged: resizing, color edits, or JPEG compression can destroy the message. Anyone with this decoder can read it.</p>
+        <details class="steg-format">
+          <summary>How the watermark works</summary>
+          <p>The message is stored as UTF-8 text between start and end markers. A length field identifies the payload boundary, and a checksum detects damaged messages. The pixel count includes this framing as well as the text.</p>
+          <p>Each fully opaque pixel stores six bits in the two lowest bits of its red, green, and blue channels. Transparent and partially transparent pixels are skipped, and image dimensions stay unchanged. Detection recognizes this demo’s format.</p>
+        </details>
+        <noscript><p>Enable JavaScript to embed or reveal messages in your browser.</p></noscript>
+      </div>
     </div>
   </article>
 </section>
@@ -118,3 +173,5 @@ permalink: /projects/
 <script src="{{ '/assets/js/accordion.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/gan-demo.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/fuzzer-demo.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/steganography-codec.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/steganography-demo.js' | relative_url }}" defer></script>
